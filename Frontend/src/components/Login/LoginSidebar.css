@@ -1,0 +1,166 @@
+/* Sidebar overlay */
+.login-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Sidebar container */
+.login-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: max(25vw, 275px);
+  height: 100%;
+  background: white;
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Header */
+.login-sidebar-header {
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-sidebar-header h2 {
+  font-family: 'FoglightItem', serif;
+  color: #d7938f;
+}
+
+/* Close icon */
+.close-icon {
+  font-size: 22px;
+  cursor: pointer;
+  color: #d7938f;
+  transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+  color: rgb(216, 3, 3);
+  animation: rotate 0.4s ease forwards;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+/* Form */
+.login-sidebar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Inputs */
+.login-sidebar-form input {
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.login-sidebar-form input:focus {
+  border: 1px solid #d7938f;
+  box-shadow: 0 0 8px #d7938f;
+}
+
+/* Button */
+.login-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #d7938f;
+  color: white;
+  border: 1px solid #d7938f;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: white;
+  color: #d7938f;
+}
+
+
+/* Toggle text */
+.login-sidebar p span {
+  color: #d7938f;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.login-sidebar p span:hover {
+  color: black;
+}
+
+/* Password wrapper */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+/* Toggle password icon */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #d7938f;
+  font-size: 18px;
+}
+
+/* Checkbox */
+.login-sidebar-condition {
+  display: flex;
+  align-items: start;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.login-sidebar-condition input {
+  margin-top: 5px;
+}
+.login-sidebar-condition input[type="checkbox"] {
+  accent-color: #d7938f;
+  box-shadow: none;
+  cursor: pointer;
+}
+

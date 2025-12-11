@@ -1,0 +1,127 @@
+.footer {
+  background-color: #d7938f;
+  padding: 60px 40px 30px;
+  font-family: 'Outfit', sans-serif;
+  color: black;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.footer-links li,
+.footer-contact li {
+  list-style: none;
+  margin-bottom: 10px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #f8b400;
+}
+
+.footer-subtext {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.newsletter-form input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+}
+
+.newsletter-form button {
+  background-color: #875024;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #f8b400;
+}
+
+.footer-incentive {
+  font-size: 13px;
+  color: #444;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.social-icons a:nth-child(1) {
+  color: #E1306C; /* Instagram pink */
+}
+
+.social-icons a:nth-child(2) {
+  color: #3b5998; /* Facebook blue */
+}
+
+.social-icons a:nth-child(3) {
+  color: #BD081C; /* Pinterest red */
+}
+
+.social-icons a:nth-child(4) {
+  color: #000000; /* TikTok black */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+
+.social-icons a:hover {
+  color: #875024;
+  animation: bounce 0.4s ease;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+  color: #875024;
+  border-top: 1px solid #e0d4c8;
+  padding-top: 20px;
+}

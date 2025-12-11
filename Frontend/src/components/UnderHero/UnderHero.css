@@ -1,0 +1,81 @@
+.under-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 4rem 6%;
+  background: rgb(255, 246, 242);
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.under-hero__text {
+  flex: 1;
+  max-width: 30%;
+  color: #875024;;
+}
+
+.under-hero__text h2 {
+  font-family: 'FoglightItem', serif;
+  font-size: 2rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.under-hero__text h2 span {
+  font-family: 'FoglightItem', serif;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #875024;;
+}
+
+.under-hero__text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.menu-button {
+  background-color: rgb(254, 207, 183);
+  color: #875024;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.menu-button:hover {
+  transform: scale(1.05);
+  background-color: #875024;
+  color: rgb(254, 207, 183);
+
+}
+
+.under-hero__center,
+.under-hero__right {
+  position: relative;
+  flex: 1;
+  max-width: 35%;
+  text-align: center;
+}
+
+.cake-image,
+.cupcake-image {
+  width: 100%;              
+  max-width: 100%;         
+  height: 74vh;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.cupcake-image:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}
+
+.cake-image:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}

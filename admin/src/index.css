@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    min-height: 100vh;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.app-content {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

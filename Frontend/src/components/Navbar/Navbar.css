@@ -1,0 +1,458 @@
+/* Navbar container */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s ease, color 0.4s ease;
+  z-index: 999;
+  background: transparent;
+}
+
+/* Navbar when scrolled */
+.navbar.scrolled {
+  background: #d7938f;
+  /* soft pink */
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+.user-icon {
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+.user-icon-wrapper {
+  position: relative;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.user-dropdown p {
+  margin: 0;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.user-dropdown p:hover {
+  background-color: #f0f0f0;
+}
+
+
+.nav-links li {
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: #d7938f;
+}
+
+.navbar.scrolled .nav-links li {
+  color: white;
+}
+
+/* Logo in the middle */
+.logo {
+  font-family: 'FoglightItem', serif;
+  color: #d7938f;
+  font-size: 22px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  cursor: default;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .logo {
+  color: white;
+}
+
+/* Right side icons + button */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-icon-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #d7938f;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  animation: popIn 0.3s ease;
+}
+
+.navbar.scrolled .cart-count {
+  background-color: white;
+  color: black;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.icon {
+  color: #d7938f;
+  font-size: 22px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .icon {
+  color: white;
+}
+
+.icon:hover {
+  color: black;
+}
+
+.navbar.scrolled .icon:hover {
+  color: black;
+}
+
+.nav-signin {
+  padding: 8px 16px;
+  background-color: #d7938f;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-signin:hover {
+  background-color: black;
+  color: white;
+}
+.navbar.scrolled .nav-signin {
+  background-color: white;
+  color: black;
+}
+
+.navbar.scrolled .nav-signin:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: absolute;
+  top: 130%;
+  left: 250%;
+  transform: translateX(-50%);
+  width: 940px;
+  height: 580px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+/* Home dropdown grid layout */
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* You can change to 4 if needed */
+  gap: 10px;
+}
+
+/* Individual product card */
+.dropdown-card {
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 210px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Image wrapper */
+.home-image-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 120px;
+}
+
+.home-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-card:hover .home-image {
+  transform: scale(1.1);
+}
+
+/* Product info */
+.dropdown-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 8px 0 4px;
+  font-family: 'FoglightItem', serif;
+}
+
+.dropdown-card .weight,
+.dropdown-card .desc,
+.dropdown-card .price {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #555;
+}
+.dropdown-card h4,
+.dropdown-card span {
+  color: #333; 
+}
+
+
+/* Quantity controls */
+.quantity-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.qty-icon {
+  cursor: pointer;
+  font-size: 16px;
+  color: #d7938f;
+}
+
+/* Add to Cart button */
+.add-btn {
+  background-color: #d7938f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: black;
+}
+
+
+.dropdown h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #d7938f;
+  font-family: 'FoglightItem', serif;
+}
+
+.cake-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.cake-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+}
+
+.dropdown-image-wrapper {
+  width: 100%;
+  height: 120px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+
+.dropdown-category-image {
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-image-wrapper:hover .dropdown-category-image {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+
+
+.cake-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+  font-family: 'FoglightItem', serif;
+}
+
+.cake-price {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Wraps both Home tab and dropdown */
+.nav-item-with-dropdown {
+  position: relative;
+}
+
+.nav-item-with-dropdown .nav-item:hover {
+  color: black;
+}
+
+.nav-item {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: inherit;
+}
+
+.nav-item .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: currentColor;
+  transition: width 0.4s ease;
+}
+
+.nav-item:hover .underline {
+  width: 100%;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 130%;
+  left: 180%;
+  transform: translateX(-50%);
+  width: 900px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.menu-dropdown h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #d7938f;
+  font-family: 'FoglightItem', serif;
+}
+
+.about-dropdown {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.about-dropdown h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #d7938f;
+  font-family: 'FoglightItem', serif;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.phone-mockups {
+  display: flex;
+  gap: 40px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.overlay span {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.about-text {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.6;
+  max-width: 700px;
+  text-align: center;
+  color: white;
+}
+
+.navbar .active {
+  color: white;
+}

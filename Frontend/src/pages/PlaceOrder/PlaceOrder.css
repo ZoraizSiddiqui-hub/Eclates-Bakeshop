@@ -1,0 +1,98 @@
+.placeorder-page {
+  font-family: 'FoglightItem', serif;
+  background-color: #fdf6f1;
+}
+
+/* Banner */
+.placeorder-banner {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+  height: 320px;
+  overflow: hidden;
+}
+.confetti-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.placeorder-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/bgt.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(9px) brightness(0.95);
+  z-index: 1;
+}
+
+.placeorder-banner h1 {
+  position: absolute;
+  font-family: 'FoglightItem', serif;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: white;
+  padding: 10px 30px;
+  z-index: 2;
+}
+
+/* Content */
+.placeorder-content {
+  display: flex;
+  justify-content: center;
+  padding: 60px 40px;
+}
+
+.placeorder-message {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  max-width: 600px;
+}
+
+.placeorder-message h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.placeorder-message p {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.placeorder-email {
+  font-style: italic;
+  color: #777;
+}
+
+/* Button */
+.placeorder-home-btn {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.placeorder-home-btn:hover {
+  background: #ff4d4d;
+}

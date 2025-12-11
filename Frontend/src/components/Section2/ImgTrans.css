@@ -1,0 +1,79 @@
+.img-trans-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200vh;
+  background: rgb(255, 231, 219);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.img-trans-video-container {
+  transform-origin: center left;
+}
+
+.img-trans-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgb(255, 157, 108);
+}
+
+.img-trans-popup {
+  max-width: 480px;
+  color: rgba(135, 80, 36);
+  font-size: 1.1rem;
+}
+
+.img-trans-popup h2 {
+  font-family: 'FoglightItem', serif;
+  font-size: 100px;
+  color: #875024;
+  text-align: center;
+  margin: 0;
+  line-height: 0.7;
+}
+
+.img-trans-popup h4 {
+  font-family: 'FoglightItem', serif;
+  font-size: 20px;
+  color: #875024;
+  text-align: center;
+  margin: 0;
+  line-height: 1.7;
+}
+.img-trans-popup p {
+  font-size: 20px;
+  color: #875024;
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+
+@keyframes popupEnter {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+.img-trans-bridge {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.img-trans-bridge img {
+  width: 100%;
+  height: 90vh;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+  padding-bottom: 3%;
+}
