@@ -1,0 +1,129 @@
+/* Overlay background */
+.admin-login-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Container */
+.admin-login-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: max(25vw, 275px);
+  height: 100%;
+  background: white;
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.4s ease forwards;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Header */
+.admin-login-header {
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-login-header h2 {
+  font-family: 'FoglightItem', serif;
+  color: #d7938f;
+}
+
+/* Form */
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Inputs */
+.admin-login-form input {
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.admin-login-form input:focus {
+  border: 1px solid #d7938f;
+  box-shadow: 0 0 8px #d7938f;
+}
+
+/* Button */
+.admin-login-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #d7938f;
+  color: white;
+  border: 1px solid #d7938f;
+  transition: background 0.3s ease;
+}
+
+.admin-login-btn:hover {
+  background-color: white;
+  color: #d7938f;
+}
+
+/* Password wrapper */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+/* Toggle password icon */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #d7938f;
+  font-size: 18px;
+}
+
+/* Checkbox */
+.admin-login-condition {
+  display: flex;
+  align-items: start;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.admin-login-condition input {
+  margin-top: 5px;
+}
+
+.admin-login-condition input[type="checkbox"] {
+  accent-color: #d7938f;
+  box-shadow: none;
+  cursor: pointer;
+}

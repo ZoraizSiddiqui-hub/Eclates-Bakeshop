@@ -1,0 +1,69 @@
+.myorders-page {
+  font-family: 'FoglightItem', serif;
+  background-color: #fdf6f1;
+  padding-bottom: 40px;
+}
+
+/* Removed .myorders-banner styles since HeroBanner handles it */
+
+/* Orders list */
+.myorders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 40px;
+}
+
+.myorders-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.myorders-info p {
+  margin: 5px 0;
+}
+
+.myorders-details-btn {
+  padding: 10px 20px;
+  background: #d7938f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.myorders-details-btn:hover {
+  background: #e1706a;
+}
+
+.myorders-empty {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-preparing {
+  color: blue;
+}
+
+.status-ready {
+  color: purple;
+}
+
+.status-delivered {
+  color: green;
+}
+
+.status-cancelled {
+  color: red;
+}

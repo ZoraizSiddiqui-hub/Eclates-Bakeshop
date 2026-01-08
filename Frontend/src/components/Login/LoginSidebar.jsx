@@ -3,6 +3,7 @@ import './LoginSidebar.css';
 import { RxCross2 } from 'react-icons/rx';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 // ✅ Import API functions
 import { loginUser, registerUser } from '../../api/api';
@@ -17,48 +18,85 @@ const LoginSidebar = ({ setShowLogin, setIsLoggedIn }) => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      let res;
-      if (currState === "Login") {
-        res = await loginUser(data.email, data.password);
-      } else {
-        res = await registerUser(data.name, data.email, data.password);
-      }
+  try {
+    console.log("Submitting form:", currState);
+    console.log("Form data:", data);
 
-      const result = res.data; // axios returns data inside res.data
-
-      if (result.success) {
-        // ✅ Store token based on "Remember me"
-        if (rememberMe) {
-          localStorage.setItem("token", result.token);
-        } else {
-          sessionStorage.setItem("token", result.token);
-        }
-
-        toast.success(`${currState} successful!`);
-
-        if (currState === "Login") {
-          setIsLoggedIn(true);       // 🔐 Notify parent that user is logged in
-          setShowLogin(false);       // ✅ Close sidebar
-        } else {
-          setCurrState("Login");     // 🔄 Switch to login mode after signup
-        }
-      } else {
-        toast.error(result.message || "Something went wrong");
-      }
-    } catch (error) {
-      toast.error("Server error");
-      console.error(error);
+    let res;
+    if (currState === "Login") {
+      console.log("Calling loginUser...");
+      res = await loginUser(data.email, data.password);
+    } else {
+      console.log("Calling registerUser...");
+      res = await registerUser(data.name, data.email, data.password);
     }
-  };
+
+    console.log("Raw response:", res);
+
+    const result = res.data;
+    console.log("Login result:", result);
+    console.log("Token:", result.token);
+    console.log("User:", result.user);
+
+    if (result.success) {
+      const token = result.token;
+      const user = result.user;
+
+      // ✅ Store token + user based on "Remember me"
+      if (rememberMe) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        console.log("Stored in localStorage");
+      } else {
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("user", JSON.stringify(user));
+        console.log("Stored in sessionStorage");
+      }
+
+      // ✅ Confirm storage
+      console.log("Stored token:", localStorage.getItem("token") || sessionStorage.getItem("token"));
+      console.log("Stored user:", localStorage.getItem("user") || sessionStorage.getItem("user"));
+
+      toast.success(`${currState} successful!`);
+
+      if (currState === "Login") {
+        setIsLoggedIn(true);
+        setShowLogin(false);
+
+        // ✅ Redirect based on admin flag
+        if (user && user.isAdmin) {
+          const ADMIN_URL = import.meta.env.VITE_ADMIN_URL;
+          setTimeout(() => {
+            window.location.href = ADMIN_URL;
+          }, 100); // delay to ensure storage is flushed
+        } else {
+          navigate("/MyOrders");
+        }
+      } else {
+        setCurrState("Login");
+      }
+    } else {
+      toast.error(result.message || "Something went wrong");
+    }
+  } catch (error) {
+    toast.error("Server error");
+    console.error("Login error:", error);
+    if (error.response) {
+      console.error("Backend response:", error.response.data);
+    }
+  }
+};
+
 
   return (
     <div className="login-sidebar-overlay">

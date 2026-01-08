@@ -197,3 +197,29 @@
 .add-btn:hover {
   background-color: #e1706a;
 }
+
+.out-of-stock-card {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.in-stock {
+  color: #d7938f;
+  font-weight: 600;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: 600;
+}
+
+.disabled-btn {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
+}
+
+.qty-icon.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+

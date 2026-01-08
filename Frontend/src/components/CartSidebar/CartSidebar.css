@@ -27,7 +27,6 @@
   from {
     transform: translateX(100%);
   }
-
   to {
     transform: translateX(0);
   }
@@ -37,7 +36,6 @@
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
@@ -143,7 +141,7 @@
 }
 
 .return-shop-btn {
-  background-color: #d7938f;;
+  background-color: #d7938f;
   color: white;
   padding: 8px 12px;
   border: 1px solid #d7938f;
@@ -158,8 +156,6 @@
   border: #d7938f solid 1px;
 }
 
-
-
 .cart-summary {
   font-size: 14px;
   margin-bottom: 15px;
@@ -172,7 +168,6 @@
   font-weight: 500;
   font-size: 20px;
 }
-
 .cart-summary > p:nth-of-type(2) {
   font-size: 15px;
   color: #555;
@@ -188,34 +183,23 @@
   gap: 10px;
 }
 
+/* Unified button styles for View Cart, Checkout, and Clear Cart */
 .view-cart-btn,
-.checkout-btn {
+.checkout-btn,
+.clear-cart-btn {
   padding: 10px;
-  border: none;
+  border: 1px solid #d7938f;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
-}
-
-.view-cart-btn {
-  background-color: #d7938f;
-  color: white;
-  border: 1px solid #d7938f;
-}
-
-.view-cart-btn:hover {
   background-color: white;
   color: #d7938f;
 }
 
-.checkout-btn {
-  background-color: white;
-  color: #d7938f;
-  border: 1px solid #d7938f;
-}
-
-.checkout-btn:hover {
+.view-cart-btn:hover,
+.checkout-btn:hover,
+.clear-cart-btn:hover {
   background-color: #d7938f;
   color: white;
 }

@@ -1,11 +1,13 @@
+// src/pages/PlaceOrder/PlaceOrder.jsx
 import React from 'react';
 import './PlaceOrder.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
+  const { orderId } = useParams();
   const { width, height } = useWindowSize();
 
   return (
@@ -21,9 +23,28 @@ const PlaceOrder = () => {
       <div className="placeorder-content">
         <div className="placeorder-message">
           <h2>🎉 Thank you for your order!</h2>
+
           <p>Your order has been successfully placed.</p>
-          <p className="placeorder-email">📧 A confirmation email has been sent to your inbox.</p>
-          <button className="placeorder-home-btn" onClick={() => navigate('/')}>
+
+          <p className="placeorder-orderid">
+            <strong>Order ID:</strong> {orderId}
+          </p>
+
+          <p className="placeorder-email">
+            📧 A confirmation email has been sent to your inbox.
+          </p>
+
+          <button
+            className="placeorder-home-btn"
+            onClick={() => navigate('/MyOrders')}
+          >
+            View My Orders
+          </button>
+
+          <button
+            className="placeorder-home-btn"
+            onClick={() => navigate('/')}
+          >
             Return to Home
           </button>
         </div>

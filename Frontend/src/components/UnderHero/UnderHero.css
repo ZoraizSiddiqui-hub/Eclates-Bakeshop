@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 4rem 6%;
-  background: rgb(255, 246, 242);
+  background: whitesmoke;
   gap: 2rem;
   flex-wrap: wrap;
 }

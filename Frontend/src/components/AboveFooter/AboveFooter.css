@@ -1,57 +1,79 @@
 .above-footer {
-    padding: 60px 40px;
-    text-align: center;
-    background-color: whitesmoke;
+  width: 100%;
+  padding: 60px 20px;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-.above-footer-heading {
-    font-family: 'FoglightItem', serif;
-    font-size: 38px;
-    font-weight: 600;
-    color: #875024;
-    margin-bottom: 10px;
+.card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.above-footer-subtext {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 40px;
+.hover-card {
+  position: relative;
+  flex: 1;
+  height: 400px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ❌ removed border */
 }
 
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 30px;
+.hover-card.inactive {
+  flex: 0.5;
+  opacity: 0.6;
 }
 
-.card {
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.hover-card.active {
+  flex: 2;
+  z-index: 2;
 }
 
-.card-image-wrapper {
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.hover-card-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: blur(5px); /* ✅ blur effect */
 }
 
-.card-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+.hover-card.active .hover-card-image {
+  transform: scale(1.05);
+  filter: blur(6px); /* slightly stronger blur when active */
 }
 
-.card-image-wrapper:hover .card-image {
-    transform: scale(1.08);
+.hover-card-label {
+  position: relative;
+  z-index: 2;
+  font-family: 'FoglightItem', serif;
+  font-size: 38px;
+  transition: transform 0.4s ease, writing-mode 0.4s ease;
+  padding: 10px 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  color: #ffffff; 
 }
 
-.card-title {
-    margin-top: 12px;
-    font-family: 'FoglightItem', serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: #875024;
+.hover-card-label.vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.hover-card-label.horizontal {
+  writing-mode: horizontal-tb;
+  transform: rotate(0deg);
 }

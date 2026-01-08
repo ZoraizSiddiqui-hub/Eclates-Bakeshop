@@ -1,0 +1,53 @@
+.edit {
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  margin-top: 50px;
+  color: black;
+  font-size: 16px;
+  margin-left: 290px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.edit form {
+  gap: 20px;
+}
+
+.edit-img-upload img {
+  width: 220px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.edit-product-name,
+.edit-product-description {
+  width: max(40%, 280px);
+}
+
+.edit-product-name input,
+.edit-product-description textarea {
+  padding: 10px;
+}
+
+.edit-category-price {
+  display: flex;
+  gap: 30px;
+}
+
+.edit-category-price select,
+.edit-category-price input {
+  max-width: 120px;
+  padding: 10px;
+}
+
+.edit-btn {
+  max-width: 150px;
+  border: none;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}

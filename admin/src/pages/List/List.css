@@ -1,23 +1,52 @@
-.list-table-format{
+.list-table-format {
   display: grid;
-  grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr 0.5fr 0.5fr; 
   align-items: center;
   gap: 10px;
   padding: 12px 15px;
   border: 1px solid #cacaca;
   font-size: 13px;
 }
-.list-table-format.title{
-    background-color: #d7938f;
-    color: black;
+
+.list-table-format.title {
+  background-color: #d7938f;
+  color: black;
+  font-size: 15px;
 }
-.list-table-format img{
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
+
+.list-table-format img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
 }
-.cursor{
-    cursor: pointer;
+
+.list-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.list-btn.edit-btn {
+  background-color: #007bffcc;
+  padding: 6px 12px;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #007bff;
+}
+
+.list-btn.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
 }
 
 @media (max-width: 600px) {

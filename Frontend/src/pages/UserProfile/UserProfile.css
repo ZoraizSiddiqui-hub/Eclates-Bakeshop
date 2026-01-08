@@ -1,0 +1,40 @@
+.userprofile-page {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userprofile-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.313);
+  max-width: 500px;
+  width: 100%;
+  margin-top: 20px; /* ✅ spacing below banner */
+}
+
+.userprofile-card p {
+  margin: 10px 0;
+}
+
+.userprofile-loading,
+.userprofile-error {
+  text-align: center;
+  padding: 40px;
+}
+
+.userprofile-update-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: #d7938f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.userprofile-update-btn:hover {
+  background: #e1706a;
+}

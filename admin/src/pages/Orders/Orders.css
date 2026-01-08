@@ -1,0 +1,181 @@
+/* admin/Orders.css */
+
+.adminorder-page {
+  padding: 40px;
+  font-family: 'FoglightItem', serif;
+  margin-left: 290px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.adminorder-page h1 {
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.adminorder-loading,
+.adminorder-empty {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 40px;
+  color: #555;
+}
+
+/* Table */
+.adminorder-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.adminorder-table th,
+.adminorder-table td {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.adminorder-table th {
+  background-color: #d7938f;
+  color: black;
+  font-size: 15px;
+}
+
+.adminorder-table tr:hover {
+  background: #fafafa;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.status-pending {
+  background: #fff4d6;
+  color: #b8860b;
+}
+
+.status-preparing {
+  background: #d6e8ff;
+  color: #1e5bb8;
+}
+
+.status-ready {
+  background: #f0d6ff;
+  color: #7a1eb8;
+}
+
+.status-delivered {
+  background: #d6ffd9;
+  color: #1b8a2f;
+}
+
+.status-cancelled {
+  background: #ffd6d6;
+  color: #b81e1e;
+}
+
+/* Dropdown */
+.adminorder-select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  cursor: pointer;
+  background: white;
+  transition: border-color 0.3s ease;
+}
+
+.adminorder-select:focus {
+  border-color: #d7938f;
+  outline: none;
+}
+
+/* Filters container */
+.adminorder-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* Search bar */
+.adminorder-search {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Status dropdown */
+.adminorder-filter-select {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background: white;
+}
+
+/* Date filter */
+.adminorder-date {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Pagination */
+.adminorder-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.adminorder-page-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.adminorder-page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.adminorder-page-info {
+  font-size: 14px;
+  color: #444;
+}
+
+/* View Details button */
+.adminorder-details-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #d7938f; /* same pink tone as logout */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.adminorder-details-btn:hover {
+  background-color: white;
+  color: #d7938f;
+  border: 1px solid #d7938f;
+  transform: scale(1.05);
+}

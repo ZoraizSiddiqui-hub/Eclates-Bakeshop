@@ -1,0 +1,103 @@
+/* Page wrapper (below banner) */
+.orderdetails-page {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'FoglightItem', serif;
+}
+
+/* Order Summary Card */
+.orderdetails-card {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.313);
+  margin-bottom: 40px;
+}
+
+.orderdetails-card p {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #444;
+}
+
+.orderdetails-card strong {
+  color: #222;
+}
+
+/* Section Headings */
+.orderdetails-page h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Items Section */
+.orderdetails-items {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.orderdetails-item {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.313);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderdetails-item p {
+  margin: 5px 0;
+  font-size: 17px;
+  color: #444;
+}
+
+.orderdetails-item strong {
+  font-size: 18px;
+  color: #111;
+}
+
+/* Loading & Error States */
+.orderdetails-loading,
+.orderdetails-error {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 50px;
+  color: #555;
+}
+
+/* Status Colors */
+.orderdetails-status {
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.status-pending {
+  background: #fff4d6;
+  color: #b8860b;
+}
+
+.status-preparing {
+  background: #d6e8ff;
+  color: #1e5bb8;
+}
+
+.status-ready {
+  background: #f0d6ff;
+  color: #7a1eb8;
+}
+
+.status-delivered {
+  background: #d6ffd9;
+  color: #1b8a2f;
+}
+
+.status-cancelled {
+  background: #ffd6d6;
+  color: #b81e1e;
+}

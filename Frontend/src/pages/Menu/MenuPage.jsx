@@ -6,9 +6,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import { toast } from 'react-hot-toast';
-
-// ✅ Import API function
-import { getFoodItems } from '../../api/api'; // adjust path if needed
+import { getFoodItems } from '../../api/api';
+import Swal from "sweetalert2";
 
 const categories = [
   "All Products",
@@ -21,7 +20,7 @@ const categories = [
   "Sundae"
 ];
 
-const MenuPage = ({ setShowCartSidebar }) => {
+const MenuPage = ({ setShowCartSidebar, isLoggedIn, setShowLogin }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,8 +29,8 @@ const MenuPage = ({ setShowCartSidebar }) => {
   const [foodItems, setFoodItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [maxReached, setMaxReached] = useState({}); // itemId -> true when backend says 0 left
 
-  // ✅ Fetch food items using api.js
   useEffect(() => {
     const fetchFoodItems = async () => {
       try {
@@ -71,12 +70,64 @@ const MenuPage = ({ setShowCartSidebar }) => {
     return foodItems.filter(item => item.category === category).length;
   };
 
-  const handleQuantityChange = (id, delta) => {
+  const handleQuantityChange = (id, delta, stock) => {
+    if (stock === 0) return;
+    if (maxReached[id]) {
+      toast.error("Only 0 item(s) left in stock");
+      return;
+    }
+
     setQuantities(prev => {
       const newQty = Math.max((prev[id] || 1) + delta, 1);
       return { ...prev, [id]: newQty };
     });
   };
+
+  const handleAddToCart = async (item, quantity) => {
+    if (!isLoggedIn) {
+      setShowLogin(true);
+      Swal.fire({
+        icon: "info",
+        title: "To order, first log in into your account"
+      });
+      return;
+    }
+
+    if (item.stock === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "This item is out of stock"
+      });
+      return;
+    }
+
+    if (maxReached[item._id]) {
+      Swal.fire({
+        icon: "error",
+        title: "Only 0 item(s) left in stock"
+      });
+      return;
+    }
+
+    try {
+      await dispatch(addToCart({ _id: item._id, quantity })).unwrap();
+      Swal.fire({
+        icon: "success",
+        title: `Added ${item.name} × ${quantity} to cart`
+      });
+      setShowCartSidebar(true);
+    } catch (err) {
+      const message = typeof err === "string" ? err : "Failed to add to cart";
+      if (message.includes("Only 0 item(s) left in stock")) {
+        setMaxReached((prev) => ({ ...prev, [item._id]: true }));
+      }
+      Swal.fire({
+        icon: "error",
+        title: message,
+      });
+    }
+  };
+
 
   const handleTabClick = (cat) => {
     if (cat === "All Products") {
@@ -84,12 +135,6 @@ const MenuPage = ({ setShowCartSidebar }) => {
     } else {
       navigate(`/menu/${cat}`);
     }
-  };
-
-  const handleAddToCart = (item, quantity) => {
-    dispatch(addToCart({ ...item, quantity }));
-    toast.success(`Added ${item.name} × ${quantity} to cart`);
-    setShowCartSidebar(true);
   };
 
   return (
@@ -119,7 +164,7 @@ const MenuPage = ({ setShowCartSidebar }) => {
 
       <div className="menu-grid">
         {filteredItems.map(item => (
-          <div key={item._id} className="menu-card">
+          <div key={item._id} className={`menu-card ${item.stock === 0 ? "out-of-stock-card" : ""}`}>
             <div className="menu-image-wrapper">
               <img
                 src={`http://localhost:4000/images/${item.image}`}
@@ -127,27 +172,47 @@ const MenuPage = ({ setShowCartSidebar }) => {
                 className="menu-image"
               />
             </div>
+
             <h3>{item.name}</h3>
             {item.weight && <p className="weight">{item.weight}</p>}
             <p className="desc">{item.description}</p>
             <p className="price">₨ {item.price}</p>
+
+            {/* Stock text comes from REAL stock field */}
+            {item.stock > 0 ? (
+              <p className="in-stock">In Stock</p>
+            ) : (
+              <p className="out-of-stock">Out of Stock</p>
+            )}
+
+            {/* Quantity Controls */}
             <div className="quantity-control">
               <AiOutlineMinus
-                className="qty-icon"
-                onClick={() => handleQuantityChange(item._id, -1)}
+                className={`qty-icon ${item.stock === 0 || maxReached[item._id] ? "disabled" : ""
+                  }`}
+                onClick={() => handleQuantityChange(item._id, -1, item.stock)}
               />
               <span>{quantities[item._id] || 1}</span>
               <AiOutlinePlus
-                className="qty-icon"
-                onClick={() => handleQuantityChange(item._id, 1)}
+                className={`qty-icon ${item.stock === 0 || maxReached[item._id] ? "disabled" : ""
+                  }`}
+                onClick={() => handleQuantityChange(item._id, 1, item.stock)}
               />
             </div>
+
+            {/* Add to Cart */}
             <button
-              className="add-btn"
-              onClick={() => handleAddToCart(item, quantities[item._id] || 1)}
+              className={`add-btn ${item.stock === 0 || maxReached[item._id] ? "disabled-btn" : ""
+                }`}
+              onClick={() =>
+                maxReached[item._id]
+                  ? toast.error("Only 0 item(s) left in stock")
+                  : handleAddToCart(item, quantities[item._id] || 1)
+              }
             >
-              Add to Cart
+              {item.stock === 0 ? "Out of Stock" : "Add to Cart"}
             </button>
+
           </div>
         ))}
       </div>

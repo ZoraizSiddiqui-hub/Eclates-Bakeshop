@@ -24,3 +24,18 @@ a{
   color: inherit;
 }
 
+/* Global SweetAlert button styling */
+.swal2-confirm {
+  background-color: #d7938f !important; /* brand color */
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+  padding: 8px 20px !important;
+  font-weight: 600 !important;
+}
+
+.swal2-confirm:hover {
+  background-color: #c57f7a !important; /* darker shade on hover */
+}
+

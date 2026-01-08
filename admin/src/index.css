@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,12 +11,12 @@ body {
     min-height: 100vh;
 }
 
-a{
+a {
     text-decoration: none;
     color: inherit;
 }
 
-hr{
+hr {
     border: none;
     height: 1px;
     background-color: #e0e0e0;
@@ -30,4 +30,9 @@ hr{
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.admin-root {
+    margin-left: 270px;
+    margin-top: 18px;
 }

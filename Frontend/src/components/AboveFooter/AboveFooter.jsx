@@ -1,40 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AboveFooter.css';
 import { useNavigate } from 'react-router-dom';
 
 import bestSellers from '../../assets/food_17.png';
-import birthday from '../../assets/food_18.png';
-import seasonal from '../../assets/food_19.png';
-import custom from '../../assets/food_20.png';
+import chocolateSpecials from '../../assets/food_18.png';
+import customOrders from '../../assets/food_20.png';
 
 const categories = [
   { name: 'Best Sellers', image: bestSellers, link: '/best-sellers' },
-  { name: 'Birthday', image: birthday, link: '/birthday' },
-  { name: 'Seasonal Specials', image: seasonal, link: '/seasonal-specials' },
-  { name: 'Custom Orders', image: custom, link: '/custom-orders' },
+  { name: 'Chocolate Specials', image: chocolateSpecials, link: '/chocolate-specials' },
+  { name: 'Custom Orders', image: customOrders, link: '/custom-orders' },
 ];
 
 const AboveFooter = () => {
   const navigate = useNavigate();
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
     <div className="above-footer">
-      <h2 className="above-footer-heading">Treats for Any Occasion</h2>
-      <p className="above-footer-subtext">
-        We've got you covered for any holiday, special occasion, or cause for celebration.
-      </p>
-
-      <div className="card-grid">
+      <div className="card-container">
         {categories.map((cat, index) => (
           <div
             key={index}
-            className="card"
+            className={`hover-card ${hoveredIndex === index ? 'active' : hoveredIndex !== null ? 'inactive' : ''}`}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => navigate(cat.link)}
           >
-            <div className="card-image-wrapper">
-              <img src={cat.image} alt={cat.name} className="card-image" />
+            <img src={cat.image} alt={cat.name} className="hover-card-image" />
+            <div className={`hover-card-label ${hoveredIndex === index ? 'horizontal' : 'vertical'}`}>
+              {cat.name}
             </div>
-            <p className="card-title">{cat.name}</p>
           </div>
         ))}
       </div>

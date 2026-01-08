@@ -3,76 +3,96 @@ import './CategorySlider.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import sandwich from '../../assets/food_17.png';
-import ramadan from '../../assets/food_18.png';
-import appetizers from '../../assets/food_19.png';
-import breakfast from '../../assets/food_20.png';
-import desserts from '../../assets/food_21.png';
-import drinks from '../../assets/food_22.png';
-import snacks from '../../assets/food_23.png';
-
 const categories = [
-    { name: 'Sandwiches', image: sandwich, link: '/sandwiches' },
-    { name: 'Ramadan', image: ramadan, link: '/ramadan' },
-    { name: 'Appetizers', image: appetizers, link: '/appetizers' },
-    { name: 'Breakfast', image: breakfast, link: '/breakfast' },
-    { name: 'Desserts', image: desserts, link: '/desserts' },
-    { name: 'Drinks', image: drinks, link: '/drinks' },
-    { name: 'Snacks', image: snacks, link: '/snacks' },
+  'Cakes',
+  'Brownies',
+  'Desserts',
+  'Cupcakes',
+  'Sundae',
+  'Cookies',
+  'Mini Donuts',
 ];
 
-const CategorySlider = () => {
-    const [startIndex, setStartIndex] = useState(0);
-    const navigate = useNavigate();
+const CategorySlider = ({ foodItems }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate();
 
-    const visibleCards = categories.slice(startIndex, startIndex + 4);
+  const getImage = (category) => {
+    if (!Array.isArray(foodItems)) return null;
+    const items = foodItems.filter((item) => item.category === category);
+    if (items.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * items.length);
+    return `http://localhost:4000/images/${items[randomIndex].image}`;
+  };
 
-    const handleNext = () => {
-        setStartIndex((prev) => (prev + 1) % categories.length);
-    };
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + categories.length) % categories.length);
+  };
 
-    const handlePrev = () => {
-        setStartIndex((prev) =>
-            (prev - 1 + categories.length) % categories.length
-        );
-    };
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % categories.length);
+  };
 
-    const getVisibleCards = () => {
-        const cards = [];
-        for (let i = 0; i < 4; i++) {
-            const index = (startIndex + i) % categories.length;
-            cards.push(categories[index]);
-        }
-        return cards;
-    };
+  const getVisibleIndices = () => {
+    const total = categories.length;
+    return [
+      (activeIndex - 2 + total) % total,
+      (activeIndex - 1 + total) % total,
+      activeIndex,
+      (activeIndex + 1) % total,
+      (activeIndex + 2) % total,
+    ];
+  };
 
-    return (
-        <div className="category-section">
-            <h2 className="section-title">Our Products</h2>
-            <div className="category-slider">
-                <button className="arrow left" onClick={handlePrev}>
-                    <FaChevronLeft />
-                </button>
+  return (
+    <div className="category-carousel">
+      <h2 className="section-title">Our Products</h2>
 
-                <div className="slider-track">
-                    {getVisibleCards().map((cat, index) => (
-                        <div
-                            key={index}
-                            className="category-card"
-                            onClick={() => navigate(cat.link)}
-                        >
-                            <img src={cat.image} alt={cat.name} className="card-image" />
-                            <p className="card-label">{cat.name}</p>
-                        </div>
-                    ))}
-                </div>
+      <div className="carousel-wrapper">
+        <button className="carousel-arrow left" onClick={handlePrev}>
+          <FaChevronLeft />
+        </button>
 
-                <button className="arrow right" onClick={handleNext}>
-                    <FaChevronRight />
-                </button>
-            </div>
+        <div className="carousel-track">
+          {getVisibleIndices().map((i, idx) => {
+            const cat = categories[i];
+            const image = getImage(cat);
+            const position = idx - 2; // -2 to +2 relative to center
+            const isActive = i === activeIndex;
+
+            return (
+              <div
+                key={idx}
+                className={`carousel-card position-${position} ${isActive ? 'active' : ''}`}
+                onClick={() => navigate(`/menu/${cat}`)}
+              >
+                {image ? (
+                  <img src={image} alt={cat} className="carousel-image" />
+                ) : (
+                  <div className="carousel-image placeholder">No Image</div>
+                )}
+                <p className="carousel-label">{cat}</p>
+              </div>
+            );
+          })}
         </div>
-    );
+
+        <button className="carousel-arrow right" onClick={handleNext}>
+          <FaChevronRight />
+        </button>
+      </div>
+
+      <div className="carousel-dots">
+        {categories.map((_, i) => (
+          <span
+            key={i}
+            className={`dot ${i === activeIndex ? 'active-dot' : ''}`}
+            onClick={() => setActiveIndex(i)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default CategorySlider;

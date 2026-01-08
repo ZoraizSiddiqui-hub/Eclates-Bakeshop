@@ -22,7 +22,13 @@ const foodSchema = new mongoose.Schema({
     image: {
         type: String,
         required: true
+    },
+    stock: { 
+        type: Number, 
+        required: true, 
+        default: 10 
     }
+
 });   
 const foodmodels = mongoose.models.food || mongoose.model("food", foodSchema);
 export default foodmodels;

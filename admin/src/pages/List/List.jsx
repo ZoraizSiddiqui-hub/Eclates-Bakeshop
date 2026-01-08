@@ -1,62 +1,92 @@
-import React, { useState, useEffect } from 'react'
-import './List.css'
-import axios from 'axios'
-import { toast } from 'react-toastify';
+// src/admin/pages/List/List.jsx
+import React, { useState, useEffect, useCallback } from "react";
+import "./List.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { getFoodItems, removeFoodItem } from "../../../../Frontend/src/api/api";
 
-const List = ({url}) => {
-  
+const List = () => {
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
 
-  const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`);
-    if (response.data.success) {
-      setList(response.data.data);
+  // ✅ Stable fetch function
+  const fetchList = useCallback(async () => {
+    try {
+      const response = await getFoodItems();
+      if (response.data.success) {
+        setList(response.data.data || []);
+      } else {
+        toast.error(response.data.message || "Error fetching items");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Server error while fetching items");
     }
-    else {
-      toast.error("Error");
-    }
-  };
+  }, []);
 
   useEffect(() => {
     fetchList();
-  }, []);
+  }, [fetchList]);
 
+  // ✅ Remove item and update local state
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, {id:foodId});
-    await fetchList();
-    if (response.data.success) {
-      toast.success(response.data.message);
-    } else {
-      toast.error("Error removing food item");
+    try {
+      const response = await removeFoodItem(foodId);
+      if (response.data.success) {
+        toast.success(response.data.message || "Item removed");
+        setList((prev) => prev.filter((item) => item._id !== foodId));
+      } else {
+        toast.error(response.data.message || "Error removing food item");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Server error while removing food item");
     }
-  }  
+  };
 
   return (
-    <div className='list add flex-col'>
+    <div className="list add flex-col">
       <p>Complete list of food items</p>
+
       <div className="list-table">
         <div className="list-table-format title">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
           <b>Price</b>
-          <b>Action</b>
+          <b>Stock</b>
+          <b>Actions</b>
         </div>
-        {list.map((item, index) => {
-          return (
-            <div key={index} className="list-table-format">
-              <img src={`${url}/images/` + item.image} alt="" />
-              <p>{item.name}</p>
-              <p>{item.category}</p>
-              <p>Rs.{item.price}</p>
-              <p className='cursor' onClick={()=>removeFood(item._id)}>X</p>
-            </div>
-          );
-        })}
 
+        {list.map((item) => (
+          <div key={item._id} className="list-table-format">
+            <img
+              src={`http://localhost:4000/images/${item.image}`}
+              alt={item.name}
+            />
+            <p>{item.name}</p>
+            <p>{item.category}</p>
+            <p>Rs.{item.price}</p>
+            <p>{item.stock}</p>
+
+            <button
+              className="list-btn edit-btn"
+              onClick={() => navigate(`/admin/edit/${item._id}`)}
+            >
+              Edit
+            </button>
+
+            <button
+              className="list-btn delete-btn"
+              onClick={() => removeFood(item._id)}
+            >
+              X
+            </button>
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default List
+export default List;

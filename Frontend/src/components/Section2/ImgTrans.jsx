@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './ImgTrans.css';
 import videoSrc from '../../assets/viduuu.mp4';
-import catpic2 from '../../assets/catpic2.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const ImgTrans = () => {
@@ -61,6 +61,7 @@ const ImgTrans = () => {
     zIndex: 9,
   };
 
+  const navigate = useNavigate();
 
 
   return (
@@ -86,12 +87,15 @@ const ImgTrans = () => {
         </div>
       )}
       {isLocked && (
-        <div className="img-trans-bridge">
-          <img src={catpic2} alt="Sweet transition" />
+        <div className="img-trans-banner">
+          <h3>Discover Our Signature Creations</h3>
+          <p>From velvety chocolate cakes to buttery croissants, every item is baked with passion and precision.</p>
+          <button className="banner-button" onClick={() => navigate('/menu')}>Explore Menu</button>
         </div>
       )}
+
     </div>
-    
+
   );
 };
 

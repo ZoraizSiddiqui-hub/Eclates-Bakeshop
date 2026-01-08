@@ -1,13 +1,31 @@
 .sidebar {
-    width: 18%;
-    min-height: 100vh;
-    border: 1px solid #e0e0e0;
-    border-top: 0;
+  position: fixed;         /* ✅ stays fixed on the left */
+  top: 0;
+  left: 0;
+  height: 100vh;           /* full viewport height */
+  width: 250px;            /* adjust as needed */
+  /* background-color: #fff; */
+  background: linear-gradient( 
+    to right, 
+    #fbcecc 0%,
+    #ffffff 50%, 
+    #ffffff 100%
+    );
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1100;
+}
+
+.sidebar-logo .logo {
+    margin-top: -100px;
+    margin-right: 70px;
+    width: max(10%, 150px);
+    margin-bottom: -100px; 
 }
 
 .sidebar-options {
-    padding-top: 50px;
-    padding-left: 20%;
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -19,11 +37,17 @@
     font-size: 16px;
     cursor: pointer;
     border: 1px solid #e0e0e0;
-    border-right: 0;
     padding: 8px 10px;
     border-radius: 3px 0px 0px 3px;
     transition: background-color 0.5s, color 0.3s;
 }
+
+.sidebar-option img[alt="Users"] {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .sidebar-option:hover {
     background-color: #d7938f;
     color: white;

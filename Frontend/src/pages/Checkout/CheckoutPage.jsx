@@ -1,34 +1,68 @@
+// src/pages/Checkout/CheckoutPage.jsx
 import React, { useState } from 'react';
 import './CheckoutPage.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { clearCartThunk } from "../../redux/cartSlice";
 
 const CheckoutPage = () => {
     const cartItems = useSelector(state => state.cart.items);
     const isCartEmpty = cartItems.length === 0;
+    const dispatch = useDispatch();
+
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const shipping = isCartEmpty ? 0 : subtotal >= 1000 ? 0 : 300;
     const total = isCartEmpty ? 0 : subtotal + shipping;
 
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        phone: '',
-        email: '',
-        address: '',
-        city: '',
+    // Updated address structure to match backend schema
+    const [address, setAddress] = useState({
+        fullName: "",
+        phone: "",
+        street: "",
+        city: "Lahore",
+        postalCode: ""
     });
 
-    const isFormComplete = Object.values(formData).every(field => field.trim() !== '');
+    const isFormComplete = Object.values(address).every(field => field.trim() !== "");
     const isCheckoutEnabled = !isCartEmpty && isFormComplete;
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setAddress({ ...address, [e.target.name]: e.target.value });
     };
+
     const navigate = useNavigate();
-    const handlePlaceOrder = () => {
+
+    const handlePlaceOrder = async () => {
         if (!isCheckoutEnabled) return;
-        navigate('/placeorder');
+
+        try {
+            const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+            const res = await fetch("http://localhost:4000/api/orders/place", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, 
+                },
+                body: JSON.stringify({ address }),
+            });
+
+            const data = await res.json();
+
+            if (!data.success) {
+                alert(data.message);
+                return;
+            }
+
+            // ✅ Clear Redux cart after successful order
+            dispatch(clearCartThunk());
+
+            // ✅ Redirect to success page with orderId
+            navigate(`/placeorder/${data.order._id}`);
+        } catch (error) {
+            console.log(error);
+            alert("Error placing order");
+        }
     };
 
     return (
@@ -41,27 +75,57 @@ const CheckoutPage = () => {
                 <div className={`checkout-page-form ${isCartEmpty ? 'disabled' : ''}`}>
                     <h2>Billing & Shipping</h2>
 
-                    <label>First Name *</label>
-                    <input type="text" name="firstName" placeholder="First name" value={formData.firstName} onChange={handleChange} disabled={isCartEmpty} />
-
-                    <label>Last Name *</label>
-                    <input type="text" name="lastName" placeholder="Last name" value={formData.lastName} onChange={handleChange} disabled={isCartEmpty} />
+                    <label>Full Name *</label>
+                    <input
+                        type="text"
+                        name="fullName"
+                        placeholder="Full Name"
+                        value={address.fullName}
+                        onChange={handleChange}
+                        disabled={isCartEmpty}
+                    />
 
                     <label>Phone *</label>
-                    <input type="text" name="phone" placeholder="Phone number" value={formData.phone} onChange={handleChange} disabled={isCartEmpty} />
-
-                    <label>Email Address *</label>
-                    <input type="email" name="email" placeholder="Email address" value={formData.email} onChange={handleChange} disabled={isCartEmpty} />
+                    <input
+                        type="text"
+                        name="phone"
+                        placeholder="Phone number"
+                        value={address.phone}
+                        onChange={handleChange}
+                        disabled={isCartEmpty}
+                    />
 
                     <label>Street Address *</label>
-                    <input type="text" name="address" placeholder="Street address" value={formData.address} onChange={handleChange} disabled={isCartEmpty} />
+                    <input
+                        type="text"
+                        name="street"
+                        placeholder="Street address"
+                        value={address.street}
+                        onChange={handleChange}
+                        disabled={isCartEmpty}
+                    />
 
                     <label>City *</label>
-                    <select name="city" value={formData.city} onChange={handleChange} disabled={isCartEmpty}>
+                    <select
+                        name="city"
+                        value={address.city}
+                        onChange={handleChange}
+                        disabled={isCartEmpty}
+                    >
                         <option value="Lahore">Lahore</option>
                         <option value="Karachi">Karachi</option>
                         <option value="Islamabad">Islamabad</option>
                     </select>
+
+                    <label>Postal Code *</label>
+                    <input
+                        type="text"
+                        name="postalCode"
+                        placeholder="Postal Code"
+                        value={address.postalCode}
+                        onChange={handleChange}
+                        disabled={isCartEmpty}
+                    />
 
                     {isCartEmpty && (
                         <p className="checkout-page-empty-warning">
@@ -76,7 +140,7 @@ const CheckoutPage = () => {
                     {cartItems.map(item => (
                         <div key={item._id} className="checkout-page-product">
                             <p>{item.name}</p>
-                            <p className="checkout-page-location">Location: {formData.city}</p>
+                            <p className="checkout-page-location">Location: {address.city}</p>
                         </div>
                     ))}
 
