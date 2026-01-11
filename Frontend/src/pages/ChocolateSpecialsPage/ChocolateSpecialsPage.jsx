@@ -114,7 +114,7 @@ const ChocolateSpecialsPage = ({ setShowCartSidebar, isLoggedIn, setShowLogin })
           <div key={item._id} className={`menu-card ${item.stock === 0 ? "out-of-stock-card" : ""}`}>
             <div className="menu-image-wrapper">
               <img
-                src={`http://localhost:4000/images/${item.image}`}
+                src={`${import.meta.env.VITE_BACKEND_URL}/images/${item.image}`}
                 alt={item.name}
                 className="menu-image"
               />
