@@ -4,7 +4,7 @@ import "./Users.css";
 import {
   fetchAllUsersAPI,
   promoteUserToAdminAPI,
-} from "../../../../Frontend/src/api/api"; // centralized APIs
+} from "../../api/api";  // centralized APIs
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
