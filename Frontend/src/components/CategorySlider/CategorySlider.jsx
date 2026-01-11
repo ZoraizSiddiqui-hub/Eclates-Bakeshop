@@ -14,6 +14,7 @@ const categories = [
 ];
 
 const CategorySlider = ({ foodItems }) => {
+  console.log("Food items in CategorySlider:", foodItems);
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
 
