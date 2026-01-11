@@ -13,7 +13,7 @@ const OrderDetails = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch(`http://localhost:4000/api/orders/${orderId}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
