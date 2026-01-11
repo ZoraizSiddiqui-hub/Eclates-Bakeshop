@@ -4,7 +4,7 @@ import "./AdminLogin.css"; // ✅ use dedicated admin login styling
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { loginUser } from "../../../../Frontend/src/api/api";
+import { loginUser } from "../../api/api"; 
 import { useNavigate } from "react-router-dom";
 
 const MySwal = withReactContent(Swal);
