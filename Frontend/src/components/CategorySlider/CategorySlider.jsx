@@ -14,7 +14,6 @@ const categories = [
 ];
 
 const CategorySlider = ({ foodItems }) => {
-  console.log("Food items in CategorySlider:", foodItems);
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
 
@@ -24,7 +23,6 @@ const CategorySlider = ({ foodItems }) => {
     if (items.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * items.length);
     return `${import.meta.env.VITE_BACKEND_URL}/images/${items[randomIndex].image}`;
-    console.log("Image URL:", url); // Debug log
   };
 
   const handlePrev = () => {
