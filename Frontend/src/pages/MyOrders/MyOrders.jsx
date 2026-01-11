@@ -13,7 +13,7 @@ const MyOrders = () => {
     try {
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
-      const res = await fetch("http://localhost:4000/api/orders/user", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/orders/user`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
