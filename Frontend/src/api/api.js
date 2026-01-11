@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/api";
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = `${backendURL}/api`;
+
 
 // ---------------- Helper ----------------
 const getAuthHeader = () => {
