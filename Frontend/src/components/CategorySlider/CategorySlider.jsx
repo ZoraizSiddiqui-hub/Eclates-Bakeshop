@@ -22,7 +22,7 @@ const CategorySlider = ({ foodItems }) => {
     const items = foodItems.filter((item) => item.category === category);
     if (items.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * items.length);
-    return `http://localhost:4000/images/${items[randomIndex].image}`;
+    return `${import.meta.env.VITE_BACKEND_URL}/images/${items[randomIndex].image}`;
   };
 
   const handlePrev = () => {
