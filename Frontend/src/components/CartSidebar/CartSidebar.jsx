@@ -154,7 +154,7 @@ const CartSidebar = ({ onClose }) => {
               <div key={item._id} className="cart-item">
                 {item.image && (
                   <img
-                    src={`http://localhost:4000/images/${item.image}`}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/images/${item.image}`}
                     alt={item.name}
                     className="cart-item-img"
                   />
