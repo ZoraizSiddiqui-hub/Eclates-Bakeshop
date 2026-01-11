@@ -2,6 +2,7 @@ import axios from "axios";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 const API_URL = `${backendURL}/api`;
+console.log("API_URL (frontend):", API_URL);
 
 
 // ---------------- Helper ----------------
