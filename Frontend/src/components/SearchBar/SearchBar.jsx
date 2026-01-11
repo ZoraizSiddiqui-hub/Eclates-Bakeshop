@@ -188,7 +188,7 @@ const SearchBar = ({ setShowCartSidebar, setShowLogin, isLoggedIn }) => {
               >
                 <div className="search-image-wrapper">
                   <img
-                    src={`http://localhost:4000/images/${item.image}`}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/images/${item.image}`}
                     alt={item.name}
                     className="search-image"
                   />
