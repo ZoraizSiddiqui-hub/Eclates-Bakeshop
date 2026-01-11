@@ -22,7 +22,7 @@ const UpdateProfile = () => {
       try {
         const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
-        const res = await fetch("http://localhost:4000/api/users/profile", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const UpdateProfile = () => {
     try {
       const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
-      const res = await fetch("http://localhost:4000/api/users/update-profile", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/update-profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
