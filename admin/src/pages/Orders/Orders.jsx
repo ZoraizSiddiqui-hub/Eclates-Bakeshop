@@ -4,7 +4,7 @@ import "./Orders.css";
 import {
   fetchAllOrdersAPI,
   updateOrderStatusAPI,
-} from "../../../../Frontend/src/api/api";
+} from "../../api/api"; 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
