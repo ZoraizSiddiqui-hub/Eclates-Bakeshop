@@ -14,7 +14,7 @@ const UserProfile = () => {
       try {
         const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
-        const res = await fetch("http://localhost:4000/api/users/profile", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
