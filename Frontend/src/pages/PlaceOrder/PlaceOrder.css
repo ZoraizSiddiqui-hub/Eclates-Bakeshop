@@ -11,6 +11,7 @@
   height: 320px;
   overflow: hidden;
 }
+
 .confetti-wrapper {
   position: fixed;
   top: 0;
@@ -76,23 +77,28 @@
 }
 
 .placeorder-email {
-  font-style: italic;
   color: #777;
 }
 
-/* Button */
-.placeorder-home-btn {
-  background: #222;
+/* Buttons */
+.placeorder-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px; 
+  margin-top: 24px;
+}
+
+.placeorder-btn {
+  background: #d7938f; 
   color: white;
   border: none;
   padding: 14px 28px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 20px;
   transition: background 0.3s ease;
 }
 
-.placeorder-home-btn:hover {
-  background: #ff4d4d;
+.placeorder-btn:hover {
+  background: #b36b63; 
 }
