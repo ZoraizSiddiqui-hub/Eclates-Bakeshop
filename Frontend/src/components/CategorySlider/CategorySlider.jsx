@@ -23,6 +23,7 @@ const CategorySlider = ({ foodItems }) => {
     if (items.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * items.length);
     return `${import.meta.env.VITE_BACKEND_URL}/images/${items[randomIndex].image}`;
+    console.log("Image URL:", url); // Debug log
   };
 
   const handlePrev = () => {
