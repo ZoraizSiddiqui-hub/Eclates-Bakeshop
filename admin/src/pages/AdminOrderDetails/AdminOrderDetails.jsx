@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   getOrderByIdAPI,
   updateOrderStatusAPI,
-} from "../../../../Frontend/src/api/api"; // centralized APIs
+} from "../../api/api"; // centralized APIs
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
