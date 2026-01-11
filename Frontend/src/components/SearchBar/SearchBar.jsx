@@ -11,6 +11,8 @@ const categories = ["cakes...", "brownies...", "donuts...", "cookies...", "cupca
 
 const SearchBar = ({ setShowCartSidebar, setShowLogin, isLoggedIn }) => {
   const dispatch = useDispatch();
+  // ✅ Debug log for env variable 
+  useEffect(() => { console.log("VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL); }, []);
 
   const [foodItems, setFoodItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
