@@ -34,19 +34,22 @@ const PlaceOrder = () => {
             📧 A confirmation email has been sent to your inbox.
           </p>
 
-          <button
-            className="placeorder-home-btn"
-            onClick={() => navigate('/MyOrders')}
-          >
-            View My Orders
-          </button>
+          {/* ✅ Updated button wrapper */}
+          <div className="placeorder-buttons">
+            <button
+              className="placeorder-btn"
+              onClick={() => navigate('/MyOrders')}
+            >
+              View My Orders
+            </button>
 
-          <button
-            className="placeorder-home-btn"
-            onClick={() => navigate('/')}
-          >
-            Return to Home
-          </button>
+            <button
+              className="placeorder-btn"
+              onClick={() => navigate('/')}
+            >
+              Return to Home
+            </button>
+          </div>
         </div>
       </div>
     </div>
