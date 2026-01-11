@@ -51,22 +51,23 @@ const App = () => {
   const [foodItems, setFoodItems] = useState([]);
 
   useEffect(() => {
-    const fetchFoodItems = async () => {
-      try {
-        const res = await fetch("http://localhost:4000/api/food/list");
-        const data = await res.json();
-        if (data.success) {
-          setFoodItems(data.data);
-        } else {
-          console.error("Failed to load food items:", data.message);
-        }
-      } catch (err) {
-        console.error("Error fetching food items:", err);
+  const fetchFoodItems = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/food/list`);
+      const data = await res.json();
+      if (data.success) {
+        setFoodItems(data.data);
+      } else {
+        console.error("Failed to load food items:", data.message);
       }
-    };
+    } catch (err) {
+      console.error("Error fetching food items:", err);
+    }
+  };
 
-    fetchFoodItems();
-  }, []);
+  fetchFoodItems();
+}, []);
+
 
   return (
     <Provider store={store}>
