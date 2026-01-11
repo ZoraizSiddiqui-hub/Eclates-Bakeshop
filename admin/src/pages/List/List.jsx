@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./List.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { getFoodItems, removeFoodItem } from "../../../../Frontend/src/api/api";
+import { getFoodItems, removeFoodItem } from "../../api/api"; 
 
 const List = () => {
   const [list, setList] = useState([]);
