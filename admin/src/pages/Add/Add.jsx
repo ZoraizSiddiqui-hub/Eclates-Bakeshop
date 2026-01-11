@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Add.css";
 import { assets } from "../../assets/assets";
 import { toast } from "react-toastify";
-import { addFoodItem } from "../../../../Frontend/src/api/api"; // centralized API function
+import { addFoodItem } from "../../api/api";  // centralized API function
 
 const Add = () => {
   const [image, setImage] = useState(null);
