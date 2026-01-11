@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import "./Edit.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
-import { getFoodItems, updateFoodItem } from "../../../../Frontend/src/api/api"; // centralized APIs
+import { getFoodItems, updateFoodItem } from "../../api/api"; // centralized APIs
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
