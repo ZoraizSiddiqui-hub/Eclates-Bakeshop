@@ -120,7 +120,7 @@ const Edit = () => {
                 image
                   ? URL.createObjectURL(image)
                   : existingImage
-                  ? `http://localhost:4000/images/${existingImage}`
+                  ? `${import.meta.env.VITE_BACKEND_URL}/images/${existingImage}`
                   : assets.upload_area
               }
               alt="Product"
