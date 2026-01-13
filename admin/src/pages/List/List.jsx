@@ -61,7 +61,7 @@ const List = () => {
         {list.map((item) => (
           <div key={item._id} className="list-table-format">
             <img
-              src={`http://localhost:4000/images/${item.image}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/images/${item.image}`}
               alt={item.name}
             />
             <p>{item.name}</p>
