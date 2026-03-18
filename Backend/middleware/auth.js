@@ -1,23 +1,59 @@
-import jwt from 'jsonwebtoken';
+// middleware/authMiddleware.js
+
+import jwt from "jsonwebtoken";
+import userModel from "../models/userModel.js";
 
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+
+  // ✅ Require Bearer token
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ success: false, message: "Not Authorized. Please login again." });
+    return res.status(401).json({
+      success: false,
+      message: "Not Authorized. Please login again."
+    });
   }
 
   try {
     const token = authHeader.split(" ")[1];
     const token_decode = jwt.verify(token, process.env.JWT_SECRET);
 
-    // ✅ Attach decoded values to request
-    req.userId = token_decode.id;
-    req.isAdmin = token_decode.isAdmin;
+    // ✅ Always fetch user from DB to validate existence and admin status
+    const user = await userModel.findById(token_decode.id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found."
+      });
+    }
+
+    // Attach trusted values to request
+    req.userId = user._id;
+    req.isAdmin = user.isAdmin;
 
     next();
   } catch (error) {
-    console.log(error);
-    return res.status(401).json({ success: false, message: "Token expired. Please login again." });
+    console.error("Auth middleware error:", error);
+
+    // ✅ Differentiate JWT error types
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({
+        success: false,
+        message: "Token expired. Please login again."
+      });
+    }
+
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid token. Please login again."
+      });
+    }
+
+    return res.status(401).json({
+      success: false,
+      message: "Authentication failed."
+    });
   }
 };
 
