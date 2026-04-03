@@ -5,7 +5,6 @@ const adminMiddleware = async (req, res, next) => {
     if (!req.userId) {
       return res.status(401).json({ success: false, message: "Authentication required." });
     }
-
     const user = await userModel.findById(req.userId);
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found." });
